@@ -1,0 +1,36 @@
+# Type signatures for the gem-inspector gem
+
+module GemInspector
+  class Analyzer
+    def initialize(gems: Hash[String, String], threshold: Integer)
+    end
+
+    def analyze: () -> Array[Hash[String, String]]
+  end
+
+  class CLI
+    def self.run: () -> void
+  end
+
+  class CSVExporter
+    def initialize(data: Array[Hash[String, String]], output_path: String)
+    end
+
+    def export: () -> void
+  end
+
+  class GemfileParser
+    def self.parse(file_path: String): Hash[String, String]
+  end
+
+  class RubyGemsClient
+    def initialize(gem_name: String)
+    end
+
+    def fetch_versions: () -> Array[Hash[String, String]]
+  end
+end
+
+module GemInspector
+  VERSION = String
+end

@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+require "gem_inspector"
+require "gem_inspector/cli"
+
+GemInspector::CLI.start(ARGV)

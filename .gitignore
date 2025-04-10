@@ -6,16 +6,19 @@
 /pkg/
 /spec/reports/
 /tmp/
-/spec/fixtures/vcr_cassettes/
-
-# rspec failure tracking
+**.gem
+.DS_Store
 .rspec_status
+*.csv
+.idea/
 
-# Gem builds
-*.gem
+# RVM files
+.ruby-version
+.ruby-gemset
 
-# IDE files
-/.idea/
+# Environment files
+.env
+.env.*
 
 # Docker files
 Dockerfile

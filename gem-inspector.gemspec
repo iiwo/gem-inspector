@@ -8,8 +8,8 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/yourusername/gem-inspector"
   spec.license       = "MIT"
 
-  spec.files         = Dir["lib/**/*.rb"] + Dir["bin/*"] + Dir["exe/*"] + ["README.md", "LICENSE.txt"]
-  spec.bindir        = "bin"
+  spec.files         = Dir["lib/**/*.rb"] + Dir["exe/*"] + ["README.md"]
+  spec.bindir        = "exe"
   spec.executables   = ["gem-inspector"]
   spec.require_paths = ["lib"]
 

@@ -50,6 +50,26 @@ gem-inspector --input Gemfile.lock --output report.csv --active-threshold 24
 - `--active-threshold` or `-t`: Time threshold in months for determining "actively maintained" status (default: 24).
 - `--verbose` or `-v`: Enable verbose logging for debugging.
 
+## Metrics Functionality
+
+`gem-inspector` includes the ability to calculate and export aggregate metrics for the analyzed gems. These metrics provide insights into the overall state of your gem dependencies.
+
+### Metrics Included
+- **Total Gems**: The total number of gems analyzed.
+- **Outdated Gems**: The number of gems that are outdated.
+- **Outdated Gems Ratio (%)**: The percentage of outdated gems.
+- **Overall Gem Currency Score**: A score representing the overall currency of your gem dependencies.
+
+### Example Command
+
+To include metrics in your analysis, use the `--metrics` option:
+
+```bash
+gem-inspector --input Gemfile.lock --output report.csv --metrics
+```
+
+This will add a summary of the metrics at the top of the generated CSV report.
+
 ## Example
 
 ```bash

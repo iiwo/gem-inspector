@@ -170,7 +170,7 @@ RSpec.describe GemInspector::Analyzer do
         expect(metrics[:total_gems]).to eq(1)
         expect(metrics[:outdated_gems]).to eq(1)
         expect(metrics[:outdated_gems_ratio]).to eq(100.0) # 1/1 gems are outdated
-        expect(metrics[:gem_currency_score]).to eq(70.0) # Only one valid gem with score 70
+        expect(metrics[:gem_currency_score]). to eq(70.0) # Only one valid gem with score 70
       end
     end
     
@@ -195,6 +195,21 @@ RSpec.describe GemInspector::Analyzer do
         metrics = analyzer.calculate_metrics(error_only_results)
         expect(metrics).to eq({})
       end
+    end
+
+    it 'returns metrics in JSON format' do
+      results = [
+        { gem_name: 'rails', locked_version: '6.1.4', latest_version: '7.0.0', actively_maintained: true, outdated: true, currency_score: 75, lag_months: 6 },
+        { gem_name: 'nokogiri', locked_version: '1.12.5', latest_version: '1.13.0', actively_maintained: true, outdated: true, currency_score: 90, lag_months: 2 }
+      ]
+
+      metrics = analyzer.calculate_metrics(results).to_json
+      expect(metrics).to eq({
+        total_gems: 2,
+        outdated_gems: 2,
+        outdated_gems_ratio: 100.0,
+        gem_currency_score: 82.5
+      }.to_json)
     end
   end
   

@@ -33,8 +33,8 @@ RSpec.describe GemInspector::CLI do
       allow(exporter).to receive(:export).with(results, 'report.csv', nil).and_return('report.csv')
       
       # Capture output
-      @original_stdout = $stdout
       $stdout = StringIO.new unless $stdout.is_a?(StringIO)
+      @original_stdout = $stdout
     end
     
     after do
@@ -129,8 +129,8 @@ RSpec.describe GemInspector::CLI do
       allow(cli).to receive(:display_metrics).with(metrics)
       
       # Capture output
-      @original_stdout = $stdout
       $stdout = StringIO.new unless $stdout.is_a?(StringIO)
+      @original_stdout = $stdout
     end
     
     after do
@@ -164,6 +164,14 @@ RSpec.describe GemInspector::CLI do
         expect(cli).to have_received(:display_metrics).with(metrics)
         expect(exporter).to_not have_received(:export)
       end
+    end
+
+    it 'outputs metrics in JSON format' do
+      metrics = { total_gems: 10, outdated_gems: 2, outdated_gems_ratio: 20.0, gem_currency_score: 85.5 }
+      allow(cli).to receive(:display_metrics).and_wrap_original do |original_method, *args|
+        original_method.call(metrics)
+      end
+      expect { cli.send(:display_metrics, metrics) }.to output(metrics.to_json + "\n").to_stdout
     end
   end
 end

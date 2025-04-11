@@ -75,12 +75,7 @@ module GemInspector
     private
     
     def display_metrics(metrics)
-      puts "\nGem Currency Metrics:"
-      puts "---------------------"
-      puts "Total Gems: #{metrics[:total_gems]}"
-      puts "Outdated Gems: #{metrics[:outdated_gems]} (#{metrics[:outdated_gems_ratio]}%)"
-      puts "Overall Gem Currency Score: #{metrics[:gem_currency_score]}/100"
-      puts "---------------------"
+      puts metrics.to_json # Output metrics as JSON
     end
   end
 end
